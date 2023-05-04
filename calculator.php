@@ -14,18 +14,28 @@ You can use a label to show the results of these variables. */-->
 </head>
 <body>
     <?php
-        $A = $To = $Wn = $Q = $h = $PVr = 0.00;
+
+$A = $To = $Wn = $Q = $h = $PVr = 5.00;
+$_SERVER["REQUEST_METHOD"] == "POST";
+
+        /*$A = test_input($_POST["A"]);
+        $To = $_POST["To"];
+        $Wn = $_POST["Wn"];
+        $Q = $_POST["Q"];
+        $h = $_POST["h"];
+        $PVr = $_POST["PVr"];*/
+        
+
+        
         $Pp = 1000 * 9.81 * $Q * $h;
         $E = $To * $Pp;
         $NofP = ($Wn*$A)/($Q * 10 * 3600);
-        $Et = $N * $E;
+        $Et = $NofP  * $E;
         $PV = $Et / 4.5;
         
         $NumberOfPanels  = ((5 * $PV) * 1000) / $PVr;
         $NumberOfBatteries = (($Et/10)*3)/10;
         $NumberOfInverters = (5 * $PV)/40; 
-
-        
 
     ?>
     <form action="calculator.php" method="post">
@@ -37,11 +47,10 @@ You can use a label to show the results of these variables. */-->
         Rated power of PV panel: <input name="PVr" type="double"/><br>
         <input type="submit" name="submit" value="submit"/><br>
     </form>
-    <?php
-        echo "$NumberOfPanels";
-        echo "$NumberOfBatteries";
-        echo "$NumberOfInverters"
-    ?>
+    
+    <?php echo "$NumberOfPanels";?><br>
+    <?php echo "$NumberOfBatteries";?><br>
+    <?php echo "$NumberOfInverters";?><br>
     
 </body>
 </html>
